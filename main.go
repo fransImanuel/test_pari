@@ -3,14 +3,17 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"strconv"
 	"test-pari/docs"
 	"test-pari/drivers"
+	"test-pari/schemas"
 	"test-pari/utils"
 
 	_ "test-pari/docs"
 
 	// swagger embed files
+	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
@@ -70,5 +73,8 @@ func main() {
 	itemHandler.InitItemHandler(app, itemService)
 
 	app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+	app.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, schemas.Response{Status: "200", Message: "Frans Test"})
+	})
 	app.Run(fmt.Sprintf(":%v", RESTPort))
 }
