@@ -1,0 +1,2 @@
+The util folder is usually a place to put general-purpose functions, such as 
+those for encrypting and decrypting data, converting strings to integers, and so on.

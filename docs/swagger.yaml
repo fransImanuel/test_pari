@@ -1,0 +1,183 @@
+definitions:
+  schemas.CreateItemRequest:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      price:
+        type: integer
+      qty:
+        type: integer
+    required:
+    - description
+    - name
+    - price
+    - qty
+    type: object
+  schemas.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+      status:
+        description: Code    int64       `json:"code,omitempty"  `
+        type: string
+    type: object
+  schemas.UpdateItemRequest:
+    properties:
+      description:
+        type: string
+      is_active:
+        type: boolean
+      name:
+        type: string
+      price:
+        type: integer
+      qty:
+        type: integer
+    required:
+    - description
+    - name
+    - price
+    - qty
+    type: object
+info:
+  contact:
+    email: yaour.personal.email@gmail.com
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Project API
+  version: "1.0"
+paths:
+  /v1/items/:
+    get:
+      consumes:
+      - application/json
+      description: Get Item
+      operationId: Item-Get
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/schemas.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Item
+      tags:
+      - Items
+  /v1/items/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Item By id
+      operationId: ItemByID-Delete
+      parameters:
+      - description: Item ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/schemas.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Item By ID
+      tags:
+      - Items
+    get:
+      consumes:
+      - application/json
+      description: Get Item By id
+      operationId: ItemByID-Get
+      parameters:
+      - description: Item ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/schemas.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Item By ID
+      tags:
+      - Items
+    put:
+      consumes:
+      - application/json
+      description: Update Item By id
+      operationId: ItemByID-Update
+      parameters:
+      - description: Item ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: body data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/schemas.UpdateItemRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/schemas.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Item By ID
+      tags:
+      - Items
+  /v1/items/create:
+    post:
+      consumes:
+      - application/json
+      description: Create Item
+      operationId: Item-Create
+      parameters:
+      - description: body data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/schemas.CreateItemRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/schemas.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Item
+      tags:
+      - Items
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+    x-extension-openapi: '{"example": "value on a json format"}'
+swagger: "2.0"

@@ -1,0 +1,3 @@
+The schemas folder is typically where you place general-purpose structs. 
+By "general-purpose," I mean structs that are used outside of database relations. 
+These are also known as DTOs (Data Transfer Objects), but the purpose remains the same.
