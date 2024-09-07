@@ -12,6 +12,8 @@ test pari
 
 2. Run The Go Program
 
+
+`go mod tidy`
 `go run main.go`
 
 3. after you run on your local, access the swagger on path "/swagger/index.html" (e.g http://localhost:8089/swagger/index.html) for documentations
